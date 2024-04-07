@@ -80,7 +80,8 @@ public class CSVReader {
     }
 
     boolean isMissing(String columnLabel) {
-        return isMissing(columnLabelsToInt.get(columnLabel)) ;
+        Integer columnIndex = columnLabelsToInt.get(columnLabel);
+        return columnIndex == null || isMissing(columnIndex);
     }
 
     String get(int columnIndex) {
@@ -99,7 +100,6 @@ public class CSVReader {
 
     int getInt(int columnIndex) throws Exception {
         if(get(columnIndex).isEmpty()) {
-//            return 0;
             throw new Exception("empty int index");
         }
         return Integer.parseInt(get(columnIndex));
